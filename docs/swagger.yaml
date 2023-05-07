@@ -1,0 +1,716 @@
+definitions:
+  controllers.CreateComments:
+    properties:
+      message:
+        type: string
+      photo_id:
+        type: integer
+    type: object
+  controllers.CreatePhotos:
+    properties:
+      caption:
+        type: string
+      photo_url:
+        type: string
+      title:
+        type: string
+    type: object
+  controllers.CreateSocial:
+    properties:
+      name:
+        type: string
+      social_media_url:
+        type: string
+    type: object
+  controllers.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  controllers.RegisterRequest:
+    properties:
+      age:
+        type: integer
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  controllers.SuccessResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  controllers.UpdateComments:
+    properties:
+      message:
+        type: string
+      photo_id:
+        type: integer
+    type: object
+  controllers.UpdatePhotos:
+    properties:
+      caption:
+        type: string
+      photo_url:
+        type: string
+      title:
+        type: string
+    type: object
+  controllers.UpdateSocial:
+    properties:
+      name:
+        type: string
+      social_media_url:
+        type: string
+    type: object
+  helpers.ErrorResponse:
+    properties:
+      error:
+        type: string
+      message:
+        type: string
+    type: object
+  models.Comment:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      message:
+        type: string
+      photo_id:
+        type: integer
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.Photo:
+    properties:
+      caption:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      photo_url:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.SocialMedia:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      social_media_url:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.User:
+    properties:
+      age:
+        type: integer
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      password:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /comment/:
+    get:
+      consumes:
+      - application/json
+      description: Get All Comment
+      parameters:
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Get All Comment
+      tags:
+      - Comment
+    post:
+      consumes:
+      - application/json
+      description: Create Comment with the given information
+      parameters:
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Comment has been created
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CreateComments'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Create a new Comment
+      tags:
+      - Comment
+  /comment/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Comment by ID Comment
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Delete Comment
+      tags:
+      - Comment
+    get:
+      consumes:
+      - application/json
+      description: Get One Comment by ID Comment
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Get One Comment
+      tags:
+      - Comment
+    put:
+      consumes:
+      - application/json
+      description: Update Comment by ID Comment
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Comment has been Updated
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdateComments'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Update Comment
+      tags:
+      - Comment
+  /photo/:
+    get:
+      consumes:
+      - application/json
+      description: Get All Photo by ID Photo
+      parameters:
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Get All Photo
+      tags:
+      - Photo
+    post:
+      consumes:
+      - application/json
+      description: Create Photo with the given information
+      parameters:
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: The social media to create
+        in: body
+        name: socialmedia
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CreatePhotos'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Photo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Create a new Photo
+      tags:
+      - Photo
+  /photo/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Photo by ID Photo
+      parameters:
+      - description: Photo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Delete Photo
+      tags:
+      - Photo
+    get:
+      consumes:
+      - application/json
+      description: Get One Photo by ID Photo
+      parameters:
+      - description: Photo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Get One Photo
+      tags:
+      - Photo
+    put:
+      consumes:
+      - application/json
+      description: Update Photo with the given information
+      parameters:
+      - description: Photo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: The social media to create
+        in: body
+        name: socialmedia
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdatePhotos'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Update Photo
+      tags:
+      - Photo
+  /socialmedia:
+    get:
+      consumes:
+      - application/json
+      description: Get All Social Media Which Has Been Made
+      parameters:
+      - description: Bearer {access_token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.SocialMedia'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Get All Social Media
+      tags:
+      - Social Media
+  /socialmedia/:
+    post:
+      consumes:
+      - application/json
+      description: CreateSocialMedia a new socialmedia with the given information
+      parameters:
+      - description: 'Bearer {access_token} Ex : ''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: The social media to create
+        in: body
+        name: socialmedia
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CreateSocial'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Create a new Social Media
+      tags:
+      - Social Media
+  /socialmedia/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Social Media by ID Social Media
+      parameters:
+      - description: Bearer {access_token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Social Media ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Delete Social Media
+      tags:
+      - Social Media
+    get:
+      consumes:
+      - application/json
+      description: Get One Social Media by ID Social Media
+      parameters:
+      - description: Social Media ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bearer {access_token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Get One Social Media
+      tags:
+      - Social Media
+    put:
+      consumes:
+      - application/json
+      description: Update Social Media by ID Social Media
+      parameters:
+      - description: Social Media ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bearer {access_token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: The Social Media Has Been Updated
+        in: body
+        name: socialmedia
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdateSocial'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Update Social Media
+      tags:
+      - Social Media
+  /user/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticates a user with their email and password and returns
+        a token.
+      parameters:
+      - description: Login for authentication
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/controllers.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Login a user
+      tags:
+      - user
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: Register a new user with the given information
+      parameters:
+      - description: The user to create
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helpers.ErrorResponse'
+      summary: Register a new user
+      tags:
+      - User
+swagger: "2.0"

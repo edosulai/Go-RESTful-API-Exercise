@@ -1,0 +1,69 @@
+ POST http://localhost:3000/user/register
+ content-type: application/json
+
+ {
+   "username" : "power",
+   "email": "death@gmail.com",
+   "password": "123",
+   "age": 21
+ }
+
+
+ POST http://localhost:3000/user/login
+ content-type: application/json
+
+ {
+   "email": "death@gmail.com",
+   "password": "123"
+ }
+
+
+ POST http://localhost:3000/socialmedia
+ content-type: application/json
+ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYXRoQGdtYWlsLmNvbSIsImlkIjoxfQ.z17M3XQfONUSSdUGxkaLfOPRRdJ1dBnv7a6iXNpXjB8
+
+ {
+   "name" : "power chan",
+   "social_media_url": "@power_chan"
+ }
+
+
+ GET http://localhost:3000/socialmedia/7
+ content-type: application/json
+ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYXRoQGdtYWlsLmNvbSIsImlkIjoxfQ.z17M3XQfONUSSdUGxkaLfOPRRdJ1dBnv7a6iXNpXjB8
+
+
+ PUT http://localhost:3000/socialmedia/7
+ content-type: application/json
+ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYXRoQGdtYWlsLmNvbSIsImlkIjoxfQ.z17M3XQfONUSSdUGxkaLfOPRRdJ1dBnv7a6iXNpXjB8
+
+ {
+   "name" : "puan chan",
+   "social_media_url": "@puan_chan"
+ }
+
+
+ DELETE http://localhost:3000/socialmedia/7
+ content-type: application/json
+ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYXRoQGdtYWlsLmNvbSIsImlkIjoxfQ.z17M3XQfONUSSdUGxkaLfOPRRdJ1dBnv7a6iXNpXjB8
+
+
+ POST http://localhost:3000/photo
+ content-type: application/json
+ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYXRoQGdtYWlsLmNvbSIsImlkIjoxfQ.z17M3XQfONUSSdUGxkaLfOPRRdJ1dBnv7a6iXNpXjB8
+
+ {
+   "title" : "Poffffwwrsdfsdweewwr",
+   "caption": "sdsvvasd@sdsdsdsd.com",
+   "photo_url": "dsdsdfsddsdfsf"
+ }
+
+
+ POST http://localhost:3000/comment
+ content-type: application/json
+ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYXRoQGdtYWlsLmNvbSIsImlkIjoxfQ.z17M3XQfONUSSdUGxkaLfOPRRdJ1dBnv7a6iXNpXjB8
+
+ {
+   "message" : "peler",
+   "photo_id" : 2
+ }
